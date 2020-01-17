@@ -15,7 +15,7 @@ namespace Here.Client
     {
         private string _appId { get; set; }
         private string _appCode { get; set; }
-        private IHereClient _hereClient { get; set; }
+        private IHereBaseClient _hereClient { get; set; }
 
         public HereClient(string appId, string appCode)
         {
@@ -25,7 +25,7 @@ namespace Here.Client
 
         private void Initalize(string url)
         {
-            _hereClient = RestClient.For<IHereClient>(url);
+            _hereClient = RestClient.For<IHereBaseClient>(url);
             _hereClient.AppId = _appId;
             _hereClient.AppCode = _appCode;
         }
