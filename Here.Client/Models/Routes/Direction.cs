@@ -10,7 +10,13 @@ namespace Here.Client.Models.Routes
         public int Length { get; set; }
         public int TravelTime { get; set; }
 
+        [JsonProperty("shape")]
+        public List<string> Shape { get; set; }
+
+        public int MyProperty { get; set; }
+
         [JsonProperty("maneuver")]
         public List<Maneuver> ManeuverList { get; set; }
     }
+
 }

@@ -3,12 +3,17 @@
     // https://developer.here.com/documentation/routing/topics/routing-mode-parameter-combinations.html
     public class RouteType
     {
-        public RouteType()
+        public RouteType() : this(null)
+        {
+        }
+
+        public RouteType(RouteAttributeDetails routeAttributeDetails)
         {
             VehicleType = VehicleTypes.Car;
             ModeType = ModeTypes.Fastest;
-            IsMetric = false;
-            HasTraffic = true;
+            IsMetric = true;
+            HasTraffic = false;
+            this.RouteAttributeDetails = routeAttributeDetails ?? RouteAttributeDetails.Defaults();
         }
 
         public VehicleTypes VehicleType { get; set; }
@@ -59,7 +64,6 @@
                 {
                     return "metric";
                 }
-
                 return "imperial";
             }
         }
@@ -78,5 +82,11 @@
                 return $"disabled";
             }
         }
+
+        internal string RouteAttributeString => this.RouteAttributeDetails.AttributesString;
+
+        public RouteAttributeDetails RouteAttributeDetails { get; private set; }
     }
+
 }
+ 

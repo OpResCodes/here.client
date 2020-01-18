@@ -11,11 +11,12 @@ using System.Threading.Tasks;
 
 namespace Here.Client
 {
+    
     public class HereClient
     {
         private string _appId { get; set; }
         private string _appCode { get; set; }
-        private IHereBaseClient _hereClient { get; set; }
+        private IHereClient _hereClient { get; set; }
 
         public HereClient(string appId, string appCode)
         {
@@ -25,23 +26,25 @@ namespace Here.Client
 
         private void Initalize(string url)
         {
-            _hereClient = RestClient.For<IHereBaseClient>(url);
+            _hereClient = RestClient.For<IHereClient>(url,  new RequestModifier((a,b) =>
+            {
+                System.Diagnostics.Trace.WriteLine(a.RequestUri.ToString());
+                return Task.CompletedTask;
+            }));
             _hereClient.AppId = _appId;
             _hereClient.AppCode = _appCode;
         }
 
         public async Task<string> GetGeocodeByAddressJson(string address)
         {
-            Initalize("https://geocoder.api.here.com/");
-
+            Initalize(HereApiBaseUrl.GeocodeApiBase);
             var response = await _hereClient.GetGecodeByAddressJsonAsync(address);
-
             return response;
         }
 
         public async Task<List<GeocodeResult>> GetGeocodeByAddress(string address)
         {
-            Initalize("https://geocoder.api.here.com/");
+            Initalize(HereApiBaseUrl.GeocodeApiBase);
 
             var response = await _hereClient.GetGecodeByAddressAsync(address);
 
@@ -57,7 +60,7 @@ namespace Here.Client
 
         public async Task<string> GetRouteByGeocodeJson(string originPosition, string destinationPosition, RouteType routeType = null)
         {
-            Initalize("https://route.api.here.com/routing/");
+            Initalize(HereApiBaseUrl.RoutingApiBase);
 
             if (routeType == null)
             {
@@ -72,7 +75,7 @@ namespace Here.Client
 
         public async Task<List<RouteResult>> GetRouteByGeocode(string originPosition, string destinationPosition, RouteType routeType = null)
         {
-            Initalize("https://route.api.here.com/routing/");
+            Initalize(HereApiBaseUrl.RoutingApiBase);
 
             if (routeType == null)
             {
@@ -80,7 +83,8 @@ namespace Here.Client
             }
 
             var response = await _hereClient.GetRouteByAddressAsync(originPosition, destinationPosition,
-                 routeType.IsMetricString, routeType.ModeTypeString, routeType.VehicleTypeString, routeType.HasTrafficString);
+                 routeType.IsMetricString, routeType.ModeTypeString, routeType.VehicleTypeString, routeType.HasTrafficString,
+                 routeType.RouteAttributeString);
 
             return response.Response.ResultList;
         }
@@ -111,17 +115,18 @@ namespace Here.Client
             var originPosition = originGeocode.Location.DisplayPosition.ToString();
             var destinationPosition = destinationGeocode.Location.DisplayPosition.ToString();
 
-            Initalize("https://route.api.here.com/routing/");
+            Initalize(HereApiBaseUrl.RoutingApiBase);
 
             var response = await _hereClient.GetRouteByAddressAsync(originPosition, destinationPosition,
-                routeType.IsMetricString, routeType.ModeTypeString, routeType.VehicleTypeString, routeType.HasTrafficString);
+                routeType.IsMetricString, routeType.ModeTypeString, routeType.VehicleTypeString, routeType.HasTrafficString,
+                routeType.RouteAttributeString);            
 
             return response.Response.ResultList;
         }
 
         public async Task<string> GetIncidentsByBoundingBoxJson(string boundingBox)
         {
-            Initalize("https://traffic.api.here.com/traffic/");
+            Initalize(HereApiBaseUrl.TrafficApiBase);
 
             var response = await _hereClient.GetIncidentsByBoundingBoxJsonAsync(boundingBox);
 
@@ -130,7 +135,7 @@ namespace Here.Client
 
         public async Task<List<IncidentResult>> GetIncidentsByBoundingBox(string boundingBox)
         {
-            Initalize("https://traffic.api.here.com/traffic/");
+            Initalize(HereApiBaseUrl.TrafficApiBase);
 
             var response = await _hereClient.GetIncidentsByBoundingBoxAsync(boundingBox);
 
@@ -166,7 +171,7 @@ namespace Here.Client
             // Much improvement needed
             var boundingBox = $"{originPosition};{destinationPosition}";
 
-            Initalize("https://traffic.api.here.com/traffic/");
+            Initalize(HereApiBaseUrl.TrafficApiBase);
 
             var response = await _hereClient.GetIncidentsByBoundingBoxAsync(boundingBox);
 
@@ -177,5 +182,6 @@ namespace Here.Client
 
             return new List<IncidentResult>();
         }
+
     }
 }
