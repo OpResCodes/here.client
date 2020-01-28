@@ -19,8 +19,8 @@ namespace Here.Client.Models.Routes
         {
             var detail = new RouteAttributeDetails();
             detail.IncludeSummary = true;
-            detail.IncludeWaypoints = true;
-            detail.IncludeLegs = true;
+            detail.IncludeWaypoints = false;
+            detail.IncludeLegs = false;
             return detail;
         }
 
@@ -95,8 +95,9 @@ namespace Here.Client.Models.Routes
             {
                 if (_values.Count == 0)
                     return string.Empty;
-                StringBuilder b = new StringBuilder(_values.Count*3 -1);
                 int c = _values.Count;
+                StringBuilder b = new StringBuilder(5 + c*3 -1);
+                b.Append("none,");
                 foreach (string s in _values)
                 {
                     b.Append(s);

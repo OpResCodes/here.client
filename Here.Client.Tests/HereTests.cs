@@ -32,7 +32,7 @@ namespace Here.Client.Tests
         [ClassInitialize]
         public static void SetupClient(TestContext con)
         {
-            var keys = LoadKeys(); 
+            ApiKeys keys = LoadKeys(); 
             _hereClient = new HereClient(keys.AppId, keys.AppCode);
         }
 
@@ -77,12 +77,12 @@ namespace Here.Client.Tests
         public void Route_GetByAddress_Pass()
         {
             var result = _hereClient.GetRouteByAddress(
-                "Wiesenhöfen 7, 22359 Hamburg",
+                "Von-Melle-Park 5, Hamburg",
                 "Moorweidenstraße 18, 20148 Hamburg",
                     new Models.Routes.RouteType(new Models.Routes.RouteAttributeDetails()
                     {
                         IncludeLegs = false,
-                        IncludeSummary = false,
+                        IncludeSummary = true,
                         IncludeRouteAsPolylineShape = true
                     }){
                         VehicleType = Models.Routes.VehicleTypes.Car,
