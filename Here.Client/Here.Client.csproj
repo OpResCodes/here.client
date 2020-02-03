@@ -2,10 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Version>0.0.1</Version>
+    <PackageId>Here.com Client For .NET</PackageId>
+    <Authors>Matthes Koch</Authors>
+    <Product>Here.com Client for .NET</Product>
+    <Description>.NET Implementation of a client using the here.com REST Api</Description>
+    <PackageProjectUrl>https://github.com/OpResCodes/here.client</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/OpResCodes/here.client</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>here.com;Spatial;Maps;Places</PackageTags>
+    <PackageReleaseNotes>Preview Version</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="RestEase" Version="1.4.9" />
   </ItemGroup>
+  
+  
 </Project>

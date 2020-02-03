@@ -15,4 +15,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Here.Client\Here.Client.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="apikeys.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
