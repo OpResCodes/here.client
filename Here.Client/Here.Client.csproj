@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <PackageId>Here.Client</PackageId>
     <Authors>Matthes Koch</Authors>
     <Product>Here.com Client for .NET</Product>
