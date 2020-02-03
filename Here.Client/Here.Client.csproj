@@ -4,8 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Version>0.0.1</Version>
-    <PackageId>Here.com Client For .NET</PackageId>
+    <Version>0.0.2</Version>
+    <PackageId>Here.Client</PackageId>
     <Authors>Matthes Koch</Authors>
     <Product>Here.com Client for .NET</Product>
     <Description>.NET Implementation of a client using the here.com REST Api</Description>
