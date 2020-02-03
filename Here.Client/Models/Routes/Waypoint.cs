@@ -1,10 +1,18 @@
-﻿namespace Here.Client.Models.Routes
+﻿using Newtonsoft.Json;
+
+namespace Here.Client.Models.Routes
 {
     public class Waypoint
     {
+        [JsonProperty("linkId")]
         public string LinkId { get; set; }
-        public Position mMppedPosition { get; set; }
+
+        [JsonProperty("mappedPosition")]
+        public Position MappedPosition { get; set; }
+
+        [JsonProperty("originalPosition")]
         public Position OriginalPosition { get; set; }
+
         public string Type { get; set; }
         public float Spot { get; set; }
         public string SideOfStreet { get; set; }
