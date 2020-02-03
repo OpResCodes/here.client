@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace Here.Client.Responses.Routes
 {
+
     public class IsolineResponse
     {
-        public MetaInfo MetaInfo { get; set; }
+        [JsonProperty("response")]
+        public IsolineResponseContent Content { get; set; }
 
     }
 

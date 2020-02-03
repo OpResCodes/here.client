@@ -20,9 +20,9 @@ namespace Here.Client.Interfaces
         [Get("6.3/incidents.json?apiKey={apiKey}&bbox={boundingBox}&criticality=critical%2Cmajor%2Cminor%2ClowImpact")]
         Task<IncidentResponse> GetIncidentsByBoundingBoxAsync([Path] string boundingBox);
 
-        //[Get("7.2/calculateisoline.json?apiKey={apiKey}&start={start}&rangetype={rangetype}&range={range}&mode={mode};{vehicle};traffic:{traffic}&singlecomponent=true")]
-        //Task<T> GetIsolineAsync([Path] string start, [Path] string rangetype, [Path] string range,
-        //    [Path] string mode, [Path] string vehicle, [Path] string traffic);
+        [Get("7.2/calculateisoline.json?apiKey={apiKey}&start={start}&rangetype={rangetype}&range={range}&mode={mode};{vehicle};traffic:{traffic}&singlecomponent=true")]
+        Task<IsolineResponse> GetIsolineAsync([Path] string start, [Path] string rangetype, [Path] string range,
+            [Path] string mode, [Path] string vehicle, [Path] string traffic);
 
 
     }

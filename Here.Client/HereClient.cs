@@ -33,6 +33,8 @@ namespace Here.Client
             _hereClient.ApiKey = _apiKey;
         }
 
+
+
         #region GeoCoding
 
         public async Task<string> GetGeocodeByAddressJson(string address)
@@ -79,9 +81,10 @@ namespace Here.Client
             }
             Initalize(HereApiBaseUrl.RoutingApiBase);
             var response = await _hereClient.GetRouteByPositionAsync(origin.ToString(), destination.ToString(),
-                 routeType.IsMetricString, routeType.ModeTypeString, routeType.VehicleTypeString, routeType.HasTrafficString,
+                 routeType.IsMetricString, 
+                 routeType.ModeTypeString, routeType.VehicleTypeString, routeType.HasTrafficString,
                  routeType.RouteAttributeString);
-            return response.Response.ResultList;
+            return response.Content.ResultList;
         }
 
         public async Task<List<RouteResult>> GetRouteByAddress(string originAddress, string destinationAddress, RouteType routeType = null)
@@ -115,6 +118,32 @@ namespace Here.Client
                 originGeocode.Location.DisplayPosition,
                 destinationGeocode.Location.DisplayPosition);
         }
+
+
+        /// <summary>
+        /// Request a polyline that connects the end points of all routes leaving from one defined center
+        /// with either a specified length or a specified travel time.
+        /// </summary>
+        /// <param name="position">Center of the isoline request. Isoline will cover all roads which can be reached from this point within given range.</param>
+        /// <param name="rangeType">Specifies type of range. Possible values are distance, time, consumption. For distance the unit is meters.
+        /// For time the unit is seconds. For consumption it is defined by consumption model</param>
+        /// <param name="range">Range of isoline. Several comma separated values can be specified. 
+        /// The unit is defined by parameter <paramref name="rangeType"/></param>
+        /// <param name="routeType">Type;TransportModes;TrafficMode;Feature</param>
+        /// <returns></returns>
+        public async Task<CoordinateArray> GetIsoline(Position position,RangeType rangeType,int range,RouteType routeType = null)
+        {
+            if (routeType == null)
+            {
+                routeType = new RouteType();
+            }
+            Initalize(HereApiBaseUrl.IsolineApiBase);
+
+            var response = await _hereClient.GetIsolineAsync(position.ToString(), rangeType.ToString(), range.ToString(),
+                routeType.ModeTypeString, routeType.VehicleTypeString, routeType.HasTrafficString);
+            return response.Content.Isoline[0].Component[0].Shape;
+        }
+
 
         #endregion
 
