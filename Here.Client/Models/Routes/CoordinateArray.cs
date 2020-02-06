@@ -38,7 +38,7 @@ namespace Here.Client.Models.Routes
             for (int i = 0; i < k; i++)
             {
                 string[] split = SplitLine(i);
-                b.AppendFormat("{0} {1}", split[0], split[1]);
+                b.AppendFormat("{0} {1}", split[1], split[0]);
                 if (i < k - 1)
                     b.Append(", ");
             }

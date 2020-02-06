@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="apikeys_empty.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="apikeys.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
