@@ -1,4 +1,6 @@
-﻿namespace Here.Client.Models
+﻿using System.Globalization;
+
+namespace Here.Client.Models
 {
     public class Position
     {
@@ -16,7 +18,10 @@
 
         public override string ToString()
         {
-            return $"{Latitude},{Longitude}";
+            return $"{Latitude.ToString(_ci)},{Longitude.ToString(_ci)}";
         }
+
+        private static CultureInfo _ci = new CultureInfo("en-US");
+
     }
 }
