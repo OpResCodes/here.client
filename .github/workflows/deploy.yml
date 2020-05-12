@@ -24,4 +24,4 @@ jobs:
       - name: Pack nuget Package
         run: dotnet pack --configuration Release
       - name: Push package to Nuget
-        run: dotnet nuget push **/*.nupkg -k ${{ secrets.NUGET_DEPLOY_KEY }} -s http://ifvwnuget.simnopt.net/nuget
+        run: dotnet nuget push -s http://baget.simnopt.net:5000/v3/index.json -k ${{ secrets.NUGET_DEPLOY_KEY }} **/*.nupkg 
