@@ -4,7 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Version>0.0.6</Version>
+    <Version>0.0.7</Version>
+    <AssemblyVersion>0.0.7.0</AssemblyVersion>
     <PackageId>Here.Client</PackageId>
     <Authors>Matthes Koch</Authors>
     <Product>Here.com Client for .NET</Product>
@@ -15,11 +16,19 @@
     <PackageTags>here.com;Spatial;Maps;Places</PackageTags>
     <PackageReleaseNotes>Preview Version</PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageIcon>hereIcon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="RestEase" Version="1.4.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="img\hereIcon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
   
   

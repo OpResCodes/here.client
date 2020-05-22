@@ -13,9 +13,7 @@ jobs:
     - name: Setup .NET core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.0.100
-#    - name: Test with
-#      run: dotnet test
+        dotnet-version: 3.1.100
   deploy:
     needs: build
     runs-on: ubuntu-latest
