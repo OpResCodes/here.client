@@ -7,8 +7,8 @@ namespace Here.Client.Models.Routes
     public class CoordinateArray : List<string>
     {
         private static readonly CultureInfo _ci = new CultureInfo("en-US");
-        private static readonly string _polygonWkt = "POLYGON(({0}))";
-        private static readonly string _linestringWkt = "LINESTRING(({0}))";
+        private static readonly string _polygonWkt = "POLYGON({0})";
+        private static readonly string _linestringWkt = "LINESTRING({0})";
         private const char _sep = ',';
 
         public Position[] ToPositionArray()
